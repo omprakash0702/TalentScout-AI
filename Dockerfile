@@ -1,30 +1,51 @@
-# Use official lightweight Python image
+# ------------------------------------------------------------
+# Base Image
+# ------------------------------------------------------------
 FROM python:3.10-slim
 
-# Set working directory
+# ------------------------------------------------------------
+# Environment Configuration
+# ------------------------------------------------------------
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# ------------------------------------------------------------
+# Application Directory
+# ------------------------------------------------------------
 WORKDIR /app
 
-# Prevent Python from writing pyc files & enable logs
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Install system dependencies (needed for PDF parsing)
-RUN apt-get update && apt-get install -y \
+# ------------------------------------------------------------
+# System Dependencies
+# ------------------------------------------------------------
+# poppler-utils  → PDF text extraction
+# build-essential → native Python package builds
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     poppler-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first (better caching)
+# ------------------------------------------------------------
+# Python Dependencies
+# ------------------------------------------------------------
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
+# ------------------------------------------------------------
+# Application Source
+# ------------------------------------------------------------
 COPY . .
 
-# Expose Streamlit port
-EXPOSE 8501
+# ------------------------------------------------------------
+# Network Configuration (Cloud Run Standard)
+# ------------------------------------------------------------
+EXPOSE 8080
 
-# Run Streamlit
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# ------------------------------------------------------------
+# Application Entrypoint
+# ------------------------------------------------------------
+CMD ["streamlit", "run", "app.py", \
+     "--server.port=$PORT", \
+     "--server.address=0.0.0.0", \
+     "--server.enableCORS=false", \
+     "--server.enableXsrfProtection=false"]
+
