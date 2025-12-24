@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.env
+*.pdf
+*.log
+*.png
+*.jpg
+_check.txt
+data/

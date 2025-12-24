@@ -1,0 +1,61 @@
+{
+  "candidate_profile": {
+    "full_name": "Om Prakash",
+    "email": "om133@gmail.com",
+    "phone": {
+      "country_code": "+91",
+      "number": "780340220"
+    },
+    "date_of_birth": "2004-02-07",
+    "current_location": "Delhi, India"
+  },
+
+  "career_details": {
+    "primary_domain": "AI / Machine Learning",
+    "job_role": "AI Engineer Intern",
+    "years_of_experience": 0
+  },
+
+  "technical_skills": {
+    "programming_languages": [
+      "Python"
+    ],
+    "frameworks_and_libraries": [
+      "FastAPI",
+      "Flask",
+      "LangChain"
+    ],
+    "databases": [
+      "MySQL"
+    ],
+    "tools_and_concepts": [
+      "RAG",
+      "REST APIs",
+      "Git"
+    ]
+  },
+
+  "screening_metadata": {
+    "experience_level": "Fresher",
+    "assessment_difficulty": "Beginner",
+    "screening_status": "Completed",
+    "recommendations_available": [
+      "Interview Preparation",
+      "Skill Improvement",
+      "Resume Advice"
+    ]
+  },
+
+  "resume_ats_summary": {
+    "ats_score": 50,
+    "sections_detected": {
+      "summary": false,
+      "experience": false,
+      "projects": true,
+      "skills": true,
+      "education": true,
+      "achievements": false
+    },
+    "overall_feedback": "Strong project-based profile for a fresher. Resume can be improved by better project framing and optional summary."
+  }
+}
