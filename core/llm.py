@@ -9,9 +9,9 @@ def get_client():
 
 def call_llm(messages: list) -> str:
     client = get_client()
-    response = client.chat.completions.create(
+    response = client.responses.create(
         model="gpt-4o-mini",
-        messages=messages,
+        input=messages,
         temperature=0.4,
     )
-    return response.choices[0].message.content
+    return response.output_text
