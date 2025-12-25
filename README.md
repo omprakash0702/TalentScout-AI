@@ -9,8 +9,8 @@ AI-powered recruitment assistant for initial candidate screening and resume ATS 
 
 ## 🔗 Live Links
 
-- **Live Demo:** ((https://talentscout-1006031252410.asia-south1.run.app/))
-- **Source Code:** ((https://github.com/omprakash0702/TalentScout-AI))
+- **Live Demo:** https://talentscout-1006031252410.asia-south1.run.app/
+- **Source Code:** https://github.com/omprakash0702/TalentScout-AI
 
 ## 🚀 Project Overview
 
@@ -72,7 +72,6 @@ TalentScout simulates a real-world recruitment workflow by combining:
 4. ATS score calculated
 5. LLM generates realistic review & suggestions
 
-## 📂 Project Structure
 ## 📂 Project Structure
 
 ```text
