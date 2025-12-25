@@ -1,3 +1,6 @@
+# README.md
+
+```markdown
 # TalentScout – AI Hiring Assistant
 
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
@@ -52,8 +55,31 @@ TalentScout simulates a real-world recruitment workflow by combining:
 ## 🧠 Application Architecture
 
 ### 🔷 High-Level Architecture
-<img width="6778" height="1603" alt="deepseek_mermaid_20251225_e2bad9" src="https://github.com/user-attachments/assets/4c27354f-c62c-483b-b9c7-52da59dd3b1a" />
 
+```
+User (Browser)
+    |
+    v
+Streamlit UI (app.py)
+    |
+    ├── Live Screening Flow
+    |      ├── conversation.py
+    |      ├── validators.py
+    |      ├── prompts.py
+    |      └── llm.py  → OpenAI API
+    |
+    ├── Resume Scan Flow
+    |      ├── resume_parser.py
+    |      ├── ats_checks.py
+    |      ├── prompts.py
+    |      └── llm.py  → OpenAI API
+    |
+    v
+Google Cloud Run
+    ├── Docker Container
+    ├── Secret Manager (OPENAI_API_KEY)
+    ├── HTTPS + Scaling
+```
 
 ### 🔄 End-to-End Flow
 
@@ -73,6 +99,8 @@ TalentScout simulates a real-world recruitment workflow by combining:
 5. LLM generates realistic review & suggestions
 
 ## 📂 Project Structure
+
+```
 Talentscout_ai/
 │
 ├── app.py
@@ -125,7 +153,7 @@ Talentscout_ai/
 │   └── Environment variables (not committed)
 │
 └── README.md
-
+```
 
 ## ☁️ Deployment (Google Cloud Run)
 
@@ -154,4 +182,73 @@ gcloud run deploy talentscout \
   --set-secrets OPENAI_API_KEY=OPENAI_API_KEY:latest
 ```
 
+## 🔐 Security & Best Practices
 
+### ✅ Implemented
+- Secrets managed via GCP Secret Manager
+- `.env` ignored in version control
+- LLM calls guarded against Streamlit reruns
+- Minimal permissions used
+
+### ❌ Avoided
+- No API keys in code or GitHub
+- No hardcoded credentials
+- No excessive permissions
+
+## 📦 Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| Frontend | Streamlit |
+| Backend Logic | Python |
+| LLM | OpenAI (Responses API) |
+| Containerization | Docker |
+| Cloud Runtime | Google Cloud Run |
+| Secrets Management | Google Secret Manager |
+| Container Registry | Google Artifact Registry |
+
+## 📚 Resources & References
+
+- **Streamlit Docs:** https://docs.streamlit.io/
+- **OpenAI API Documentation:** https://platform.openai.com/docs
+- **Google Cloud Run:** https://cloud.google.com/run/docs
+- **Google Artifact Registry:** https://cloud.google.com/artifact-registry/docs
+- **Google Secret Manager:** https://cloud.google.com/secret-manager/docs
+- **Prompt Engineering Guide:** https://www.promptingguide.ai/
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+```
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+---
+
+**Note:** Replace the placeholder URLs with your actual deployment URLs before use. Update the project name, region, and GCP project details in deployment commands as needed.
+```
+
+**How to use this file:**
+1. Save this content as `README.md` in your project root
+2. Replace placeholder URLs with your actual URLs
+3. Update project-specific details in deployment commands
+4. Use as your main project documentation
