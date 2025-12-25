@@ -73,8 +73,10 @@ TalentScout simulates a real-world recruitment workflow by combining:
 5. LLM generates realistic review & suggestions
 
 ## 📂 Project Structure
+## 📂 Project Structure
+
+```text
 Talentscout_ai/
-│
 ├── app.py
 │   └── Main Streamlit UI
 │       • Mode selection (Chat / Resume Scan)
@@ -83,48 +85,69 @@ Talentscout_ai/
 │
 ├── core/
 │   ├── conversation.py
-│   │   • Screening state machine
-│   │   • Input validation logic
-│   │   • LLM interaction control
+│   │   • Recruitment screening state machine
+│   │   • Context handling & post-screening guidance
 │   │
 │   ├── llm.py
 │   │   • Centralized OpenAI client
-│   │   • Handles API calls safely
+│   │   • Production-safe LLM calls
 │   │
 │   ├── prompts.py
 │   │   • All LLM prompts
-│   │   • Technical questions
-│   │   • Resume review logic
+│   │   • Technical interview & resume review logic
 │   │
 │   ├── validators.py
-│   │   • Email, name, experience, tech stack validation
+│   │   • Input validation (email, experience, tech stack)
 │   │
-│   ├── ats_checks.py
-│   │   • Section-aware ATS checks
-│   │   • Fresher-safe scoring
+│   └── ats_checks.py
+│       • Section-aware ATS checks
+│       • Fresher-safe scoring logic
 │
 ├── utils/
 │   ├── resume_parser.py
 │   │   • PDF resume text extraction
 │   │
 │   ├── constants.py
-│   │   • State definitions
-│   │   • Exit keywords
+│   │   • Conversation states & exit keywords
+│   │
+│   ├── helper.py
+│   │   • Shared helper utilities
+│   │   • Formatting, normalization, reusable logic
+│   │
+│   └── __init__.py
 │
 ├── ui/
 │   ├── styles.py
-│   │   • Custom Streamlit styling
+│   │   • Custom Streamlit UI styling
+│   │
+│   └── __init__.py
+│
+├── data/
+│   └── samples
+│     
+│
+├── demo/
+│   ├── screenshots-video/
+│   │   • a guidance about how to use it 
+│   │
+│   └── demo_notes.md
+│       • Demo walkthrough & testing notes
 │
 ├── Dockerfile
-│   └── Container configuration
+│   │   • Docker container configuration
 │
 ├── requirements.txt
-│   └── Python dependencies
+│   │   • Python dependencies
 │
 ├── .env (local only)
-│   └── Environment variables (not committed)
+│   │   • Environment variables (ignored in Git)
+│
+├── .gitignore
+│   │   • Git ignore rules
 │
 └── README.md
+    • Project documentation
+```
 
 
 
@@ -191,7 +214,3 @@ https://www.promptingguide.ai/
 
 ## 📝 License
 This project is licensed under the MIT License.
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files...
