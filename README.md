@@ -10,7 +10,7 @@ AI-powered recruitment assistant for initial candidate screening and resume ATS 
 ## 🔗 Live Links
 
 - **Live Demo:** ((https://talentscout-1006031252410.asia-south1.run.app/))
-- **Source Code:** ((https://github.com/omprakash0702/TalentScout-A))
+- **Source Code:** ((https://github.com/omprakash0702/TalentScout-AI))
 
 ## 🚀 Project Overview
 
@@ -167,27 +167,31 @@ gcloud run deploy talentscout \
 - No excessive permissions
 
 ## 📦 Tech Stack
-Frontend: Streamlit
-Backend Logic: Python
-LLM: OpenAI (Responses API)
-Containerization: Docker
-Cloud: Google Cloud Run
-Secrets: Google Secret Manager
-Registry: Google Artifact Registry
+- Frontend: Streamlit
+- Backend Logic: Python
+- LLM: OpenAI (Responses API)
+- Containerization: Docker
+- Cloud: Google Cloud Run
+- Secrets: Google Secret Manager
+- Registry: Google Artifact Registry
 
 ## 📚 Resources & References
-Streamlit Docs
-https://docs.streamlit.io/
-OpenAI API Documentation
+- Streamlit Docs
+ https://docs.streamlit.io/
+- OpenAI API Documentation
 https://platform.openai.com/docs
-Google Cloud Run
+- Google Cloud Run
 https://cloud.google.com/run/docs
-Google Artifact Registry
+- Google Artifact Registry
 https://cloud.google.com/artifact-registry/docs
-Google Secret Manager
+- Google Secret Manager
 https://cloud.google.com/secret-manager/docs
-Prompt Engineering Guide
+- Prompt Engineering Guide
 https://www.promptingguide.ai/
 
 ## 📝 License
 This project is licensed under the MIT License.
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files...
