@@ -9,8 +9,8 @@ AI-powered recruitment assistant for initial candidate screening and resume ATS 
 
 ## 🔗 Live Links
 
-- **Live Demo:** [https://talentscout-ai-xxxxx-uw.a.run.app]((https://talentscout-1006031252410.asia-south1.run.app/))
-- **Source Code:** [https://github.com/yourusername/talentscout-ai]((https://github.com/omprakash0702/TalentScout-A))
+- **Live Demo:** ((https://talentscout-1006031252410.asia-south1.run.app/))
+- **Source Code:** ((https://github.com/omprakash0702/TalentScout-A))
 
 ## 🚀 Project Overview
 
@@ -76,55 +76,56 @@ TalentScout simulates a real-world recruitment workflow by combining:
 Talentscout_ai/
 │
 ├── app.py
-│ └── Main Streamlit UI
-│ • Mode selection (Chat / Resume Scan)
-│ • Handles user interaction
-│ • Orchestrates application flow
+│   └── Main Streamlit UI
+│       • Mode selection (Chat / Resume Scan)
+│       • Handles user interaction
+│       • Orchestrates application flow
 │
 ├── core/
-│ ├── conversation.py
-│ │ • Screening state machine
-│ │ • Input validation logic
-│ │ • LLM interaction control
-│ │
-│ ├── llm.py
-│ │ • Centralized OpenAI client
-│ │ • Handles API calls safely
-│ │
-│ ├── prompts.py
-│ │ • All LLM prompts
-│ │ • Technical questions
-│ │ • Resume review logic
-│ │
-│ ├── validators.py
-│ │ • Email, name, experience, tech stack validation
-│ │
-│ ├── ats_checks.py
-│ │ • Section-aware ATS checks
-│ │ • Fresher-safe scoring
+│   ├── conversation.py
+│   │   • Screening state machine
+│   │   • Input validation logic
+│   │   • LLM interaction control
+│   │
+│   ├── llm.py
+│   │   • Centralized OpenAI client
+│   │   • Handles API calls safely
+│   │
+│   ├── prompts.py
+│   │   • All LLM prompts
+│   │   • Technical questions
+│   │   • Resume review logic
+│   │
+│   ├── validators.py
+│   │   • Email, name, experience, tech stack validation
+│   │
+│   ├── ats_checks.py
+│   │   • Section-aware ATS checks
+│   │   • Fresher-safe scoring
 │
 ├── utils/
-│ ├── resume_parser.py
-│ │ • PDF resume text extraction
-│ │
-│ ├── constants.py
-│ │ • State definitions
-│ │ • Exit keywords
+│   ├── resume_parser.py
+│   │   • PDF resume text extraction
+│   │
+│   ├── constants.py
+│   │   • State definitions
+│   │   • Exit keywords
 │
 ├── ui/
-│ ├── styles.py
-│ │ • Custom Streamlit styling
+│   ├── styles.py
+│   │   • Custom Streamlit styling
 │
 ├── Dockerfile
-│ └── Container configuration
+│   └── Container configuration
 │
 ├── requirements.txt
-│ └── Python dependencies
+│   └── Python dependencies
 │
 ├── .env (local only)
-│ └── Environment variables (not committed)
+│   └── Environment variables (not committed)
 │
 └── README.md
+
 
 
 ## ☁️ Deployment (Google Cloud Run)
@@ -153,4 +154,40 @@ gcloud run deploy talentscout \
   --allow-unauthenticated \
   --set-secrets OPENAI_API_KEY=OPENAI_API_KEY:latest
 ```
+## 🔐 Security & Best Practices
+### ✅ Implemented
+- Secrets managed via GCP Secret Manager
+- .env ignored in version control
+- LLM calls guarded against Streamlit reruns
+- Minimal permissions used
 
+### ❌ Avoided
+- No API keys in code or GitHub
+- No hardcoded credentials
+- No excessive permissions
+
+## 📦 Tech Stack
+Frontend: Streamlit
+Backend Logic: Python
+LLM: OpenAI (Responses API)
+Containerization: Docker
+Cloud: Google Cloud Run
+Secrets: Google Secret Manager
+Registry: Google Artifact Registry
+
+## 📚 Resources & References
+Streamlit Docs
+https://docs.streamlit.io/
+OpenAI API Documentation
+https://platform.openai.com/docs
+Google Cloud Run
+https://cloud.google.com/run/docs
+Google Artifact Registry
+https://cloud.google.com/artifact-registry/docs
+Google Secret Manager
+https://cloud.google.com/secret-manager/docs
+Prompt Engineering Guide
+https://www.promptingguide.ai/
+
+## 📝 License
+This project is licensed under the MIT License.
