@@ -126,9 +126,6 @@ Talentscout_ai/
 │     
 │
 ├── demo/
-│   ├── screenshots-video/
-│   │   • a guidance about how to use it 
-│   │
 │   └── demo_notes.md
 │       • Demo walkthrough & testing notes
 │
