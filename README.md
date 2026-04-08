@@ -1,198 +1,190 @@
 # TalentScout – AI Hiring Assistant
 
+## Tech Stack
+
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
 
-AI-powered recruitment assistant for initial candidate screening and resume ATS evaluation, built with Streamlit, LLMs, Docker, and Google Cloud Run.
 
-## 🔗 Live Links
+# TalentScout AI – Hiring Assistant
 
-- **Live Demo:** https://talentscout-1006031252410.asia-south1.run.app/
-- **Source Code:** https://github.com/omprakash0702/TalentScout-AI
+TalentScout AI is a full-stack recruitment assistant designed to simulate a structured hiring workflow. It combines conversational screening, resume analysis, and job-role alignment into a single system. The focus is on building a realistic, controlled hiring pipeline rather than a generic chatbot.
 
-## 🚀 Project Overview
+The application uses a Streamlit interface for user interaction and a FastAPI backend for handling logic and APIs. It is containerized with Docker and deployed on Google Cloud Run with secure secret management.
 
-TalentScout simulates a real-world recruitment workflow by combining:
-- Structured candidate intake (ATS-style)
-- Context-aware technical screening using LLMs
-- Resume ATS scanning with realistic fresher handling
-- Practical post-screening guidance (interview, skills, resume)
-- Secure, scalable cloud deployment
+---
 
-> **Focus:** Correct use of LLMs for recruitment workflows, not generic chatbot behavior.
+## Live Demo
 
-## 🎯 Key Features
+New Deployment  
+https://talentscout-v2-1006031252410.asia-south1.run.app/
 
-### 🔹 Live Screening Assistant
-- Recruiter-led conversation (assistant starts first)
-- Domain → Job Role → Experience → Tech Stack flow
-- Experience-aware technical question generation
-- Strict scope control (not open-ended chat)
+Previous Version  
+https://talentscout-1006031252410.asia-south1.run.app/
 
-### 🔹 Resume Scan (ATS Review)
-- PDF resume upload
-- Section-aware ATS checks (Summary, Experience, Projects, Skills, Education, Achievements)
-- Realistic scoring (fresher-friendly)
-- Actionable improvement suggestions (no toxic expectations)
+---
 
-### 🔹 Post-Screening Guidance
-- Interview preparation tips
-- Skill improvement roadmap
-- Resume improvement advice
-- Controlled intent-based responses
+## Overview
 
-### 🔹 Production Deployment
-- Dockerized Streamlit app
-- Deployed on Google Cloud Run
-- Secrets managed via Google Secret Manager
-- Scale-to-zero enabled
+The system guides candidates through an initial screening process similar to a recruiter-led interaction. It collects structured inputs such as domain, role, experience, and technical skills, then generates context-aware technical questions.
 
-## 🧠 Application Architecture
+In parallel, the system supports resume analysis using ATS-style evaluation. It provides actionable feedback and realistic suggestions, especially tailored for entry-level candidates. A job match layer helps users understand how well their profile aligns with a target role.
 
-### 🔷 High-Level Architecture
-<img width="6778" height="1603" alt="deepseek_mermaid_20251225_e2bad9" src="https://github.com/user-attachments/assets/8065ff02-5553-4d49-a65a-1d45d9fcbcc5" />
+Authentication and session tracking allow users to maintain continuity, revisit results, and restart flows when needed.
 
+---
 
-### 🔄 End-to-End Flow
+## Core Features
 
-#### 1️⃣ Candidate Screening
-1. Assistant greets candidate
-2. Collects structured information (domain, role, experience)
-3. Validates inputs (email, experience, tech stack)
-4. Generates tailored technical questions
-5. Produces candidate summary
-6. Offers post-screening guidance
+### Screening Workflow
 
-#### 2️⃣ Resume ATS Scan
-1. User uploads PDF resume
-2. Resume text extracted
-3. ATS section checks performed
-4. ATS score calculated
-5. LLM generates realistic review & suggestions
+The screening assistant follows a controlled flow. It collects candidate details, validates inputs, and generates technical questions based on experience level and skill set. The interaction remains focused and structured, avoiding open-ended chat.
 
-## 📂 Project Structure
+At the end of the flow, the system produces a concise summary along with guidance for interview preparation and skill improvement.
 
-```text
-Talentscout_ai/
-├── app.py
-│   └── Main Streamlit UI
-│       • Mode selection (Chat / Resume Scan)
-│       • Handles user interaction
-│       • Orchestrates application flow
+---
+
+### Resume Analysis (ATS-Based)
+
+Users can upload a PDF resume, which is parsed and evaluated across key sections such as skills, projects, education, and experience. The system generates an ATS-style score and provides practical suggestions for improvement.
+
+The evaluation is designed to be realistic and supportive, especially for freshers.
+
+---
+
+### Job Match Insight
+
+The system compares resume content and user inputs against the selected job role. It provides a simple alignment signal that helps users understand how well their profile fits the role and where improvements are needed.
+
+---
+
+### Authentication
+
+A lightweight authentication layer allows users to log in and maintain a session. This ensures a consistent experience across interactions.
+
+---
+
+### History Tracking
+
+User interactions, including screening responses and resume analysis results, are stored using SQLite. This allows users to revisit previous sessions within the same runtime.
+
+---
+
+### Reset and New Sessions
+
+Users can reset the application state at any time. This allows starting a new screening flow or uploading a new resume without interference from previous data.
+
+---
+
+## System Flow
+```User
 │
-├── core/
-│   ├── conversation.py
-│   │   • Recruitment screening state machine
-│   │   • Context handling & post-screening guidance
-│   │
-│   ├── llm.py
-│   │   • Centralized OpenAI client
-│   │   • Production-safe LLM calls
-│   │
-│   ├── prompts.py
-│   │   • All LLM prompts
-│   │   • Technical interview & resume review logic
-│   │
-│   ├── validators.py
-│   │   • Input validation (email, experience, tech stack)
-│   │
-│   └── ats_checks.py
-│       • Section-aware ATS checks
-│       • Fresher-safe scoring logic
+▼
+Streamlit Interface
 │
-├── utils/
-│   ├── resume_parser.py
-│   │   • PDF resume text extraction
-│   │
-│   ├── constants.py
-│   │   • Conversation states & exit keywords
-│   │
-│   ├── helper.py
-│   │   • Shared helper utilities
-│   │   • Formatting, normalization, reusable logic
-│   │
-│   └── __init__.py
+├── Authentication
+│ └── Login / Session Start
+│
+├── Screening Flow
+│ ├── Collect Inputs (Domain, Role, Experience, Skills)
+│ ├── Validate Inputs
+│ ├── Generate Questions (LLM)
+│ ├── Capture Responses
+│ └── Generate Summary + Guidance
+│
+├── Resume Analysis
+│ ├── Upload Resume (PDF)
+│ ├── Extract Text
+│ ├── Run ATS Checks
+│ ├── Generate Score
+│ └── Provide Suggestions
+│
+├── Job Match
+│ └── Compare Profile with Role Expectations
+│
+├── History
+│ └── Store and Retrieve Previous Sessions
+│
+└── Reset
+└── Clear Session and Restart Flow
+
+▼
+FastAPI Backend
+│
+├── Conversation Engine
+├── Prompt Management
+├── Validation Layer
+├── Auth Handling
+│
+▼
+SQLite (Session Storage)
+│
+▼
+OpenAI API (LLM Processing)
+```
+
+---
+
+## Architecture
+
+The system follows a layered design.
+
+The frontend is built with Streamlit and handles user interaction and flow control. The backend is implemented using FastAPI, managing APIs, authentication, and business logic.
+
+Core modules handle conversation state, prompt design, and validation. SQLite is used for lightweight session storage. OpenAI APIs are used for generating intelligent responses.
+
+Both frontend and backend run inside a single Docker container, simplifying deployment and ensuring consistency.
+
+---
+
+## Project Structure
+```
+TALENTSCOUT_AI/
+│
+├── backend/
+│ ├── main.py
+│ ├── chat.py
+│ ├── core/
+│ ├── db/
+│ ├── routes/
 │
 ├── ui/
-│   ├── styles.py
-│   │   • Custom Streamlit UI styling
-│   │
-│   └── __init__.py
+├── utils/
 │
-├── data/
-│   └── samples
-│     
+├── core_old/ # previous implementation preserved
 │
-├── demo/
-│   └── demo_notes.md
-│       • Demo walkthrough & testing notes
-│
+├── app.py # Streamlit frontend
 ├── Dockerfile
-│   │   • Docker container configuration
-│
 ├── requirements.txt
-│   │   • Python dependencies
-│
-├── .env (local only)
-│   │   • Environment variables (ignored in Git)
-│
-├── .gitignore
-│   │   • Git ignore rules
-│
-└── README.md
-    • Project documentation
+├── README.md
 ```
 
+---
 
+## Deployment
 
-## ☁️ Deployment (Google Cloud Run)
+The application is containerized using Docker and deployed on Google Cloud Run. Both frontend and backend run within a single container.
 
-### Deployment Highlights
-- Dockerized Streamlit app
-- Image stored in Google Artifact Registry
-- Secrets injected via Google Secret Manager
-- Public HTTPS endpoint
-- Automatic scaling (scale-to-zero)
+Sensitive data such as API keys are managed using Google Secret Manager and injected at runtime. The system is stateless and uses ephemeral storage, making it suitable for scalable deployments.
 
-### Deployment Commands
+---
 
-```bash
-# Build and tag Docker image
-docker build -t talentscout .
-docker tag talentscout asia-south1-docker.pkg.dev/PROJECT/REPO/talentscout:latest
+## Tech Stack
 
-# Push to Artifact Registry
-docker push asia-south1-docker.pkg.dev/PROJECT/REPO/talentscout:latest
+Frontend: Streamlit  
+Backend: FastAPI  
+Language: Python  
+Database: SQLite  
+LLM Integration: OpenAI API  
+Containerization: Docker  
+Cloud Platform: Google Cloud Run  
+Secrets Management: Google Secret Manager  
 
-# Deploy to Cloud Run
-gcloud run deploy talentscout \
-  --image asia-south1-docker.pkg.dev/PROJECT/REPO/talentscout:latest \
-  --region asia-south1 \
-  --allow-unauthenticated \
-  --set-secrets OPENAI_API_KEY=OPENAI_API_KEY:latest
-```
-## 🔐 Security & Best Practices
-### ✅ Implemented
-- Secrets managed via GCP Secret Manager
-- .env ignored in version control
-- LLM calls guarded against Streamlit reruns
-- Minimal permissions used
-
-### ❌ Avoided
-- No API keys in code or GitHub
-- No hardcoded credentials
-- No excessive permissions
-
-## 📦 Tech Stack
-- Frontend: Streamlit
-- Backend Logic: Python
-- LLM: OpenAI (Responses API)
-- Containerization: Docker
-- Cloud: Google Cloud Run
-- Secrets: Google Secret Manager
-- Registry: Google Artifact Registry
+---
 
 ## 📚 Resources & References
 - Streamlit Docs
