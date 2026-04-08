@@ -17,8 +17,6 @@ WORKDIR /app
 # ------------------------------------------------------------
 # System Dependencies
 # ------------------------------------------------------------
-# poppler-utils  → PDF text extraction
-# build-essential → native Python package builds
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     poppler-utils \
@@ -36,16 +34,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # ------------------------------------------------------------
-# Network Configuration (Cloud Run Standard)
+# Cloud Run Port
 # ------------------------------------------------------------
 EXPOSE 8080
 
 # ------------------------------------------------------------
-# Application Entrypoint
+# Start BOTH FastAPI + Streamlit
 # ------------------------------------------------------------
-CMD ["streamlit", "run", "app.py", \
-     "--server.port=$PORT", \
-     "--server.address=0.0.0.0", \
-     "--server.enableCORS=false", \
-     "--server.enableXsrfProtection=false"]
-
+CMD bash -c "\
+uvicorn backend.main:app --host 0.0.0.0 --port 8000 & \
+streamlit run app.py --server.port 8080 --server.address 0.0.0.0 --server.enableCORS=false --server.enableXsrfProtection=false"

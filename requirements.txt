@@ -1,5 +1,16 @@
 streamlit==1.32.2
+<<<<<<< HEAD
 openai>=1.30.0
 requests>=2.31.0
+=======
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+passlib[argon2]
+>>>>>>> ad3818b (Upgraded TalentScout AI: added FastAPI backend, auth, SQLite history, Dockerized full system, deployed on Cloud Run with Secret Manager)
 python-dotenv>=1.0.1
+requests>=2.31.0
 pymupdf
+openai>=1.30.0
+python-jose[cryptography]

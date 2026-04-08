@@ -1,12 +1,33 @@
-venv/
+# Python cache
 __pycache__/
 *.pyc
-.git/
-.gitignore
+*.pyo
+*.pyd
+
+# Database
+*.db
+*.sqlite3
+
+# Env files
 .env
+
+# Git
+.git
+.gitignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+
+venv/
+.env/
+node_modules/
 *.pdf
-*.log
+*.zip
 *.png
 *.jpg
-_check.txt
 data/
+logs/
